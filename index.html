@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Evergreen FL Financial Group | Helping Families Create Wealth</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary: #001f3f;
+            --primary-light: #003366;
+            --accent: #ffd700;
+            --accent-hover: #e6c200;
+            --dark: #0a0a0a;
+            --light: #f4f4f4;
+            --card-bg: #162a3d;
+            --text-muted: #a0aec0;
+        }
+
+        /* Smooth Scroll */
+        html { scroll-behavior: smooth; }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--dark);
+            color: var(--light);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 { font-family: 'Poppins', sans-serif; }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0; width: 100%;
+            z-index: 1000;
+            background: rgba(0, 31, 63, 0.98);
+            backdrop-filter: blur(10px);
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255,215,0,0.2);
+        }
+
+        .logo { font-size: 1.4rem; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 1px; }
+
+        nav .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            margin-left: 25px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+
+        nav a:hover { color: var(--accent); }
+
+        /* Hero Section */
+        header {
+            height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(rgba(0, 15, 30, 0.45), rgba(0, 15, 30, 0.85)),
+                        url('https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&q=80') center/cover;
+            padding: 0 20px;
+            text-align: center;
+        }
+
+        header h1 { font-size: clamp(2.5rem, 6vw, 4rem); margin-bottom: 20px; line-height: 1.1; }
+        header p { font-size: 1.2rem; max-width: 750px; margin: 0 auto 40px; color: #d1d1d1; }
+
+        .cta-btn {
+            background: var(--accent);
+            color: #000;
+            padding: 18px 40px;
+            border-radius: 50px;
+            font-weight: 700;
+            text-decoration: none;
+            box-shadow: 0 10px 20px rgba(255, 215, 0, 0.2);
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .cta-btn:hover { background: var(--accent-hover); transform: translateY(-3px); box-shadow: 0 15px 25px rgba(255, 215, 0, 0.3); }
+
+        /* Section Global */
+        section { padding: 100px 5%; max-width: 1300px; margin: auto; }
+        h2 { text-align: center; font-size: 2.5rem; margin-bottom: 50px; position: relative; }
+        h2::after { content: ''; width: 60px; height: 4px; background: var(--accent); position: absolute; bottom: -15px; left: 50%; transform: translateX(-50%); }
+
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .service-card {
+            background: var(--card-bg);
+            padding: 40px 30px;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: 0.3s;
+            text-decoration: none;
+            color: var(--light);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .service-card i { font-size: 2.5rem; color: var(--accent); margin-bottom: 20px; }
+        .service-card:hover { background: var(--primary-light); transform: translateY(-10px); border-color: var(--accent); }
+
+        /* Timeline Styles */
+        .timeline { position: relative; margin: 50px auto; }
+        .timeline::after { content: ''; position: absolute; width: 2px; background: var(--accent); top: 0; bottom: 0; left: 50%; }
+
+        .timeline-item { padding: 20px 40px; position: relative; width: 50%; }
+        .timeline-item.left { left: 0; text-align: right; }
+        .timeline-item.right { left: 50%; text-align: left; }
+
+        .timeline-content {
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        /* Contact & Form */
+        .contact-container { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: start; }
+        .contact-info h3 { color: var(--accent); font-size: 1.8rem; }
+        
+        form { display: grid; gap: 15px; background: #1a1a1a; padding: 40px; border-radius: 20px; }
+        input, textarea {
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #333;
+            background: #0d0d0d;
+            color: white;
+            font-family: inherit;
+        }
+        input:focus, textarea:focus { outline: none; border-color: var(--accent); }
+
+        button {
+            background: var(--accent);
+            border: none;
+            padding: 18px;
+            border-radius: 50px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        footer { background: #050505; padding: 50px 20px; text-align: center; border-top: 1px solid #222; }
+
+        /* Mobile Adjustments */
+        @media (max-width: 768px) {
+            .contact-container { grid-template-columns: 1fr; }
+            .timeline::after { left: 31px; }
+            .timeline-item { width: 100%; padding-left: 70px; padding-right: 20px; text-align: left !important; }
+            .timeline-item.right { left: 0; }
+            nav .nav-links { display: none; } /* Could add a hamburger menu here */
+        }
+        select {
+    padding: 14px;
+    border-radius: 8px;
+    border: none;
+    background: #1e1e1e;
+    color: white;
+}
+
+    </style>
+</head>
+
+<body>
+
+<nav>
+    <div class="logo">Evergreen FL</div>
+    <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#process">Process</a>
+        <a href="#contact">Contact</a>
+    </div>
+</nav>
+
+<header>
+    <h1>Building Legacy & <span style="color:var(--accent)">Financial Security</span></h1>
+    <p>We provide personalized financial strategies to help Florida families protect their income and grow long-term wealth.</p>
+    <a href="#contact" class="cta-btn">Schedule Free Consultation</a>
+</header>
+
+<section id="about">
+    <h2>Who We Are</h2>
+    <div style="max-width: 800px; margin: auto; text-align: center;">
+        <p style="font-size: 1.1rem; color: #ccc;">
+            Evergreen FL Financial Group is a premier advisory firm based in Orlando. Led by Regional Marketing Director 
+            <strong>Manasa Nagati</strong>, our mission is to simplify the complex world of finance into 
+            actionable, transparent strategies.
+        </p>
+    </div>
+</section>
+
+<section id="services">
+    <h2>Our Expertise</h2>
+    <div class="services-grid">
+        <a href="#contact" class="service-card">
+            <i class="fas fa-piggy-bank"></i>
+            <h3>Retirement Planning</h3>
+            <p>Secure lifetime income and maximize your retirement years.</p>
+        </a>
+        <a href="#contact" class="service-card">
+            <i class="fas fa-chart-line"></i>
+            <h3>401(k) Optimization</h3>
+            <p>Smart strategies to grow and protect your employer-sponsored plans.</p>
+        </a>
+        <a href="#contact" class="service-card">
+            <i class="fas fa-shield-halved"></i>
+            <h3>Living Benefits</h3>
+            <p>Insurance solutions that pay you while you are still alive.</p>
+        </a>
+        <a href="#contact" class="service-card">
+            <i class="fas fa-graduation-cap"></i>
+            <h3>College Funding</h3>
+            <p>Start early and build a tax-efficient path for education.</p>
+        </a>
+        <a href="#contact" class="service-card">
+            <i class="fas fa-hand-holding-heart"></i>
+            <h3>Legacy & Estate</h3>
+            <p>Ensure your assets reach the next generation exactly as you intended.</p>
+        </a>
+        <a href="#contact" class="service-card">
+            <i class="fas fa-house-chimney-user"></i>
+            <h3>Mortgage Protection</h3>
+            <p>Keep your family in their home no matter what life throws at you.</p>
+        </a>
+    </div>
+</section>
+
+<section id="process">
+    <h2>The 5-Step Process</h2>
+    <div class="timeline">
+        <div class="timeline-item left">
+            <div class="timeline-content">
+                <h3>01. Discovery</h3>
+                <p>A no-obligation chat to understand your specific financial dreams.</p>
+            </div>
+        </div>
+        <div class="timeline-item right">
+            <div class="timeline-content">
+                <h3>02. Analysis</h3>
+                <p>We audit your current status to find hidden risks and growth opportunities.</p>
+            </div>
+        </div>
+        <div class="timeline-item left">
+            <div class="timeline-content">
+                <h3>03. Strategy</h3>
+                <p>We build a customized roadmap tailored to your specific goals.</p>
+            </div>
+        </div>
+        <div class="timeline-item right">
+            <div class="timeline-content">
+                <h3>04. Launch</h3>
+                <p>We implement your plan using our network of top-rated providers.</p>
+            </div>
+        </div>
+        <div class="timeline-item left">
+            <div class="timeline-content">
+                <h3>05. Review</h3>
+                <p>Life changes, and so should your plan. We stay by your side forever.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="contact">
+    <div class="contact-container">
+        <div class="contact-info">
+            <h2>Get In Touch</h2>
+            <p>Ready to start your journey? Contact us today for a complimentary review of your financial portfolio.</p>
+            <br>
+            <h3>Manasa Nagati</h3>
+            <p>Regional Marketing Director</p>
+            <p><i class="fas fa-phone" style="color:var(--accent)"></i> +1 (689) 207-8426</p>
+            <p><i class="fas fa-envelope" style="color:var(--accent)"></i> nagatimanas@gmail.com</p>
+        </div>
+       <form>
+    <input type="text" placeholder="Your Name" required>
+    <input type="email" placeholder="Your Email" required>
+    <input type="tel" placeholder="Your Phone">
+
+    <select required>
+        <option value="" disabled selected>
+            Select the service you’re interested in
+        </option>
+        <option>Retirement Income & Lifetime Planning</option>
+        <option>401(k) & IRA Optimization Strategies</option>
+        <option>Insurance Solutions with Living Benefits</option>
+        <option>College & Education Funding Plans</option>
+        <option>Long-Term Wealth Growth Strategies</option>
+        <option>Legacy, Estate & Trust Planning</option>
+        <option>Mortgage & Income Protection</option>
+        <option>Final Expense & Family Protection</option>
+        <option>Not sure – I’d like guidance</option>
+    </select>
+
+    <textarea rows="5" placeholder="How can we help?" required></textarea>
+    <button type="submit">Schedule My Free Consultation</button>
+</form>
+
+    </div>
+</section>
+
+<footer>
+    <p>© 2026 Evergreen FL Financial Group. All rights reserved.</p>
+    <p style="color: var(--text-muted); font-size: 0.8rem;">Orlando, Florida | Integrity • Clarity • Confidence</p>
+</footer>
+
+</body>
+</html>
