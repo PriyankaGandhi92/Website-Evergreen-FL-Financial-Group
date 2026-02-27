@@ -286,43 +286,86 @@ mortgage balance and kids education needs.</p>
     <div class="contact-container">
         <div class="contact-info">
             <h2>Get In Touch</h2>
-            <p>Contact us today for a complimentary session on future proofing your finances.</p>
+            <p>Ready to start your journey? Contact us today for a complimentary finance session.</p>
             <br>
             <h3>Manasa Nagati</h3>
-            <p>Regional Marketing Director</p>
-            <p><i class="fas fa-phone" style="color:var(--accent)"></i> +1 (689) 207-8426</p>
-            <p><i class="fas fa-envelope" style="color:var(--accent)"></i>reachbuildmylegacy@gmail.com</p>
-            <p><i class="fas fa-location-dot" style="color:var(--accent)"></i> Orlando, Florida</p>
+            <p>Regional Marketing Director [cite: 120, 121]</p>
+            <p><i class="fas fa-phone" style="color:var(--accent)"></i> +1 (689) 207-8426 [cite: 122]</p>
+            <p><i class="fas fa-envelope" style="color:var(--accent)"></i> nagatimanas@gmail.com [cite: 123]</p>
+            <p><i class="fas fa-location-dot" style="color:var(--accent)"></i> Orlando, Florida [cite: 138]</p>
         </div>
-        <form action="https://formspree.io/f/xojnbnpn" method="POST">
-    
-    <input type="text" name="name" placeholder="Your Name" required>
-    <input type="email" name="email" placeholder="Your Email" required>
-    <input type="tel" name="phone" placeholder="Your Phone">
-    
-    <select name="service_interest" required>
-        <option value="" disabled selected>Select the service you're interested in [cite: 131]</option>
-        <option value="Retirement">Retirement & Tax Savings [cite: 26]</option>
-        <option value="Estate Planning">Estate & Trust Planning [cite: 62]</option>
-        <option value="Living Benefits">Living Benefits / Life Insurance [cite: 50, 66]</option>
-        <option value="Health Insurance">ACA Health Insurance [cite: 51]</option>
-        <option value="Business Opportunity">Business Opportunity [cite: 37]</option>
-        <option value="Mortgage Protection">Mortgage Protection [cite: 65]</option>
-    </select>
 
-    <input type="text" name="referral_code" placeholder="Referral Name / Coupon Code [cite: 132]">
+        <div class="form-wrapper">
+            <form id="my-form" action="https://formspree.io/f/xojnbnpn" method="POST">
+                
+                <input type="text" name="_gotcha" style="display:none">
 
-    <div class="checkbox-group">
-        <input type="checkbox" id="partner" name="wants_to_be_partner" value="Yes">
-        <label for="partner">Interested to become a business partner [cite: 133]</label>
-    </div>
+                <input type="text" name="name" placeholder="Your Name" required [cite: 124]>
+                <input type="email" name="email" placeholder="Your Email" required [cite: 125]>
+                <input type="tel" name="phone" placeholder="Your Phone">
+                
+                <select name="service_interest" required [cite: 131]>
+                    <option value="" disabled selected>Select the service you're interested in</option>
+                    <option value="Retirement">Tax Savings & Retirement Planning [cite: 26]</option>
+                    <option value="Estate Planning">Estate & Legacy Planning [cite: 61, 62]</option>
+                    <option value="Living Benefits">Insurance with Living Benefits [cite: 50, 86]</option>
+                    <option value="Health Insurance">ACA Health Insurance [cite: 51, 55]</option>
+                    <option value="Business Opportunity">Million Dollar Business Opportunity [cite: 37, 38]</option>
+                    <option value="Mortgage Protection">Mortgage & Family Protection [cite: 65]</option>
+                </select>
 
-    <textarea name="message" rows="4" placeholder="How can we help? [cite: 134]" required></textarea>
-    
-    <button type="submit">Schedule My Free Consultation [cite: 135]</button>
-</form>
+                <input type="text" name="referral_code" placeholder="Referral Name / Coupon Code [cite: 132]">
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="partner" name="business_partner_interest" value="Yes">
+                    <label for="partner">Interested to become a business partner [cite: 133]</label>
+                </div>
+
+                <textarea name="message" rows="4" placeholder="How can we help? [cite: 134]" required></textarea>
+                
+                <button type="submit" id="my-form-button">Schedule My Free Consultation [cite: 135]</button>
+                
+                <p id="my-form-status" style="margin-top: 15px; text-align: center; font-weight: 600;"></p>
+            </form>
+        </div>
     </div>
 </section>
+
+<script>
+    var form = document.getElementById("my-form");
+    
+    async function handleSubmit(event) {
+      event.preventDefault();
+      var status = document.getElementById("my-form-status");
+      var data = new FormData(event.target);
+      fetch(event.target.action, {
+        method: form.method,
+        body: data,
+        headers: {
+            'Accept': 'application/json'
+        }
+      }).then(response => {
+        if (response.ok) {
+          status.innerHTML = "Success! We will contact you shortly.";
+          status.style.color = "#ffd700"; // Accent gold color
+          form.reset();
+        } else {
+          response.json().then(data => {
+            if (Object.hasOwn(data, 'errors')) {
+              status.innerHTML = data["errors"].map(error => error["message"]).join(", ");
+            } else {
+              status.innerHTML = "Oops! There was a problem submitting your form";
+            }
+            status.style.color = "#ff4d4d"; // Red for errors
+          })
+        }
+      }).catch(error => {
+        status.innerHTML = "Oops! There was a problem submitting your form";
+        status.style.color = "#ff4d4d";
+      });
+    }
+    form.addEventListener("submit", handleSubmit)
+</script>
 
 <footer>
     <p>© 2026 Evergreen FL Financial Group. All rights reserved.</p>
